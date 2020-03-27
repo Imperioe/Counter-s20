@@ -1,6 +1,6 @@
-package edu.up.cs301.counter;
+package edu.up.cs301.counter.counterActionMessage;
 
-import edu.up.cs301.game.GameFramework.GamePlayer;
+import edu.up.cs301.game.GameFramework.players.GamePlayer;
 import edu.up.cs301.game.GameFramework.actionMessage.GameAction;
 
 /**
@@ -12,6 +12,8 @@ import edu.up.cs301.game.GameFramework.actionMessage.GameAction;
  * @version September 2012
  */
 public class CounterMoveAction extends GameAction {
+	//Tag for logging
+	private static final String TAG = "CounterMoveAction";
 	
 	// to satisfy the serializable interface
 	private static final long serialVersionUID = 28062013L;

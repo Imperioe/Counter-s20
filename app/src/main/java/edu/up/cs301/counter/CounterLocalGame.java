@@ -1,6 +1,8 @@
 package edu.up.cs301.counter;
 
-import edu.up.cs301.game.GameFramework.GamePlayer;
+import edu.up.cs301.counter.counterActionMessage.CounterMoveAction;
+import edu.up.cs301.counter.infoMessage.CounterState;
+import edu.up.cs301.game.GameFramework.players.GamePlayer;
 import edu.up.cs301.game.GameFramework.LocalGame;
 import edu.up.cs301.game.GameFramework.actionMessage.GameAction;
 import android.util.Log;
@@ -15,16 +17,14 @@ import android.util.Log;
  * @version July 2013
  */
 public class CounterLocalGame extends LocalGame {
-
+	//Tag for logging
+	private static final String TAG = "CounterLocalGame";
 	// When a counter game is played, any number of players. The first player
 	// is trying to get the counter value to TARGET_MAGNITUDE; the second player,
 	// if present, is trying to get the counter to -TARGET_MAGNITUDE. The
 	// remaining players are neither winners nor losers, but can interfere by
 	// modifying the counter.
 	public static final int TARGET_MAGNITUDE = 10;
-
-	// the game's state
-	private CounterState gameState;
 	
 	/**
 	 * can this player move
@@ -42,8 +42,14 @@ public class CounterLocalGame extends LocalGame {
 	 * This ctor should be called when a new counter game is started
 	 */
 	public CounterLocalGame() {
+		super();
 		// initialize the game state, with the counter value starting at 0
-		this.gameState = new CounterState(0);
+		super.state = new CounterState(0);
+	}
+
+	public CounterLocalGame(CounterState counterState){
+		super();
+		super.state = new CounterState(counterState);
 	}
 
 	/**
@@ -59,8 +65,8 @@ public class CounterLocalGame extends LocalGame {
 			CounterMoveAction cma = (CounterMoveAction)action;
 
 			// Update the counter values based upon the action
-			int result = gameState.getCounter() + (cma.isPlus() ? 1 : -1);
-			gameState.setCounter(result);
+			int result = ((CounterState) super.state).getCounter() + (cma.isPlus() ? 1 : -1);
+			((CounterState) super.state).setCounter(result);
 			
 			// denote that this was a legal/successful move
 			return true;
@@ -78,7 +84,7 @@ public class CounterLocalGame extends LocalGame {
 	protected void sendUpdatedStateTo(GamePlayer p) {
 		// this is a perfect-information game, so we'll make a
 		// complete copy of the state to send to the player
-		p.sendInfo(new CounterState(gameState));
+		p.sendInfo(new CounterState((CounterState) super.state));
 		
 	}//sendUpdatedSate
 	
@@ -94,7 +100,7 @@ public class CounterLocalGame extends LocalGame {
 	protected String checkIfGameOver() {
 		
 		// get the value of the counter
-		int counterVal = this.gameState.getCounter();
+		int counterVal = ((CounterState)this.state).getCounter();
 		
 		if (counterVal >= TARGET_MAGNITUDE) {
 			// counter has reached target magnitude, so return message that
@@ -117,6 +123,15 @@ public class CounterLocalGame extends LocalGame {
 			// is not yet over
 			return null;
 		}
+	}
+
+	//TESTING
+
+	public int whoWon(){
+		String gameOver = checkIfGameOver();
+		if(gameOver == null) return -1;
+		if(gameOver.equals(playerNames[0]+" has won.")) return 0;
+		return 1;
 	}
 
 }// class CounterLocalGame

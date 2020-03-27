@@ -1,6 +1,7 @@
-package edu.up.cs301.counter;
+package edu.up.cs301.counter.players;
 
-import edu.up.cs301.game.GameFramework.GameComputerPlayer;
+import edu.up.cs301.counter.counterActionMessage.CounterMoveAction;
+import edu.up.cs301.game.GameFramework.players.GameComputerPlayer;
 import edu.up.cs301.game.GameFramework.infoMessage.GameInfo;
 import edu.up.cs301.game.GameFramework.utilities.Tickable;
     
@@ -14,6 +15,8 @@ import edu.up.cs301.game.GameFramework.utilities.Tickable;
  * @version September 2013
  */
 public class CounterComputerPlayer1 extends GameComputerPlayer implements Tickable {
+	//Tag for logging
+	private static final String TAG = "CounterComputerPlayer1";
 	
     /**
      * Constructor for objects of class CounterComputerPlayer1

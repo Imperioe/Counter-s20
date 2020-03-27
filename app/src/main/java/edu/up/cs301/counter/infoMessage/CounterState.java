@@ -1,4 +1,4 @@
-package edu.up.cs301.counter;
+package edu.up.cs301.counter.infoMessage;
 
 import edu.up.cs301.game.GameFramework.infoMessage.GameState;
 
@@ -11,6 +11,8 @@ import edu.up.cs301.game.GameFramework.infoMessage.GameState;
  * @version July 2013
  */
 public class CounterState extends GameState {
+	//Tag for logging
+	private static final String TAG = "CounterState";
 	
 	// to satisfy Serializable interface
 	private static final long serialVersionUID = 7737393762469851826L;
@@ -57,5 +59,11 @@ public class CounterState extends GameState {
 	 */
 	public void setCounter(int counter) {
 		this.counter = counter;
+	}
+
+	public boolean equals(Object object){
+		if(!(object instanceof CounterState)) return false;
+		CounterState counterState = (CounterState) object;
+		return this.counter == counterState.counter;
 	}
 }

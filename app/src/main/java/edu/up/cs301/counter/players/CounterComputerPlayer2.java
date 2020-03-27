@@ -1,5 +1,6 @@
-package edu.up.cs301.counter;
+package edu.up.cs301.counter.players;
 
+import edu.up.cs301.counter.infoMessage.CounterState;
 import edu.up.cs301.game.GameFramework.GameMainActivity;
 import edu.up.cs301.game.R;
 import edu.up.cs301.game.GameFramework.infoMessage.GameInfo;
@@ -23,6 +24,8 @@ import android.widget.TextView;
 * @version September 2013
 */
 public class CounterComputerPlayer2 extends CounterComputerPlayer1 {
+	//Tag for logging
+	private static final String TAG = "CounterComputerPlayer2";
 	
 	/*
 	 * instance variables

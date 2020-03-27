@@ -1,6 +1,8 @@
-package edu.up.cs301.counter;
+package edu.up.cs301.counter.players;
 
-import edu.up.cs301.game.GameFramework.GameHumanPlayer;
+import edu.up.cs301.counter.counterActionMessage.CounterMoveAction;
+import edu.up.cs301.counter.infoMessage.CounterState;
+import edu.up.cs301.game.GameFramework.players.GameHumanPlayer;
 import edu.up.cs301.game.GameFramework.GameMainActivity;
 import edu.up.cs301.game.R;
 import edu.up.cs301.game.GameFramework.actionMessage.GameAction;
@@ -24,6 +26,8 @@ import android.view.View.OnClickListener;
  * @version July 2013
  */
 public class CounterHumanPlayer extends GameHumanPlayer implements OnClickListener {
+	//Tag for logging
+	private static final String TAG = "CounterHumanPlayer";
 
 	/* instance variables */
 	

@@ -1,4 +1,5 @@
 <resources>
+    <!--These are strings unique to Counter-->
     <string name="app_name">Counter</string>
     <string name="hello_world">Hello world!</string>
 </resources>
